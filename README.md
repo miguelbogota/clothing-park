@@ -2,9 +2,16 @@
 
 React app for selling clothes online.
 
-| <img width="40" src="https://raw.githubusercontent.com/miguelbogota/clothing-park/master/public/logo192.png" alt="Cat logo with only lines." /> | Logo was design and created by [Kakha Kakhadzen](https://dribbble.com/Kakhadzen) - [Cat Logo](https://dribbble.com/shots/6811005-Cat). The app uses a variant fully dark for learning purposes. |
-| - | - |
-
+<table>
+  <tr align="left">
+    <td><img width="60" src="https://raw.githubusercontent.com/miguelbogota/clothing-park/master/public/logo192.png" alt="Cat logo with only lines." /></td>
+    <td>
+      Logo was design and created by <a href="https://dribbble.com/Kakhadzen">Kakha Kakhadzen</a> - <a href="https://dribbble.com/shots/6811005-Cat">Cat Logo</a>.
+      <br />
+      The app uses a variant fully dark for learning purposes.
+    </td>
+  </tr>
+</table>
 
 ## Author
 
