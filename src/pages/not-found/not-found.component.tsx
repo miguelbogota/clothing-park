@@ -5,4 +5,4 @@ export const NotFound: FC = () => {
   return (
     <div>Error</div>
   );
-}
+};

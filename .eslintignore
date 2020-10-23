@@ -1,0 +1,11 @@
+node_modules
+.gitignore
+serviceWorker.ts
+setupTest.ts
+*.d.ts
+dist
+*.svg
+*.ico
+*.json
+*.log
+*.lock

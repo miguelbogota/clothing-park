@@ -5,4 +5,4 @@ export const Home: FC = () => {
   return (
     <div>Hello</div>
   );
-}
+};
