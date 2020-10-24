@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
 import { Home } from 'pages/home/home.component';
 import { Shop } from 'pages/shop/shop.component';
+import { Authentication } from 'pages/authentication/authentication.component';
 import { NotFound } from 'pages/not-found/not-found.component';
 
 export const App: FC = () => {
@@ -13,6 +14,7 @@ export const App: FC = () => {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/shop" component={Shop} exact />
+        <Route path="/signin" component={Authentication} exact />
         <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>

@@ -11,10 +11,13 @@ export const NavigationBar: FC = () => {
       </Link>
       <div className="options">
         <Link className='option' to='/shop'>
-          Shop
+          SHOP
         </Link>
         <Link className='option' to='/contact'>
-          Contact
+          CONTACT
+        </Link>
+        <Link className='option' to='/signin'>
+          SIGN IN
         </Link>
       </div>
     </nav>
