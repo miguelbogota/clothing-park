@@ -1,7 +1,8 @@
+import { ComponentPropsWithoutRef } from 'react';
+
 /**
  * Required props for the UI Button.
  */
-export interface UIButtonProps {
-  type: 'button' | 'submit' | 'reset';
+export interface UIButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: string;
 }
