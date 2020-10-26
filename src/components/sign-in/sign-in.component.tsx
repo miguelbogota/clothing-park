@@ -3,6 +3,7 @@ import './sign-in.styles.scss';
 import { SignInFormProps } from 'core/models/sign-in-props.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
+import { signInWithGoogle } from 'core/services/firebase/firebase.service';
 
 export const SignIn: FC = () => {
   const [signInForm, setSignInForm] = useState<SignInFormProps>({ email: '', password: '' });
@@ -39,7 +40,10 @@ export const SignIn: FC = () => {
           handleChange={handleChange}
           required
         />
-        <UIButton type='submit'>Sign In</UIButton>
+        <div className="buttons">
+          <UIButton type='submit'>Sign In</UIButton>
+          <UIButton isGoogleSignIn onClick={signInWithGoogle}>Sign In With Google</UIButton>
+        </div>
       </form>
     </div>
   );

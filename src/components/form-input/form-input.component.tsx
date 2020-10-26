@@ -20,8 +20,8 @@ export const FormInput: FC<FormInputProps> = ({ handleChange = hanldeChangeInit,
     <div className='group'>
       <input className='form-input' id={id} name={label} onChange={handleChange} {...InputProps} />
       {
-        label ?
-          (<label className={`form-input-label${InputProps.value.length ? ' shrink' : ''}`} htmlFor={id}>{label}</label>)
+        label
+          ? (<label className={`form-input-label${InputProps.value.length ? ' shrink' : ''}`} htmlFor={id}>{label}</label>)
           : null
       }
     </div>
