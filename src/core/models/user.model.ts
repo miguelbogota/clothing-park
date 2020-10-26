@@ -6,4 +6,5 @@ export interface ShopUser {
   email: string;
   displayName: string;
   photoURL: string;
+  createdAt: Date;
 }
