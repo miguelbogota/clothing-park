@@ -4,15 +4,20 @@ import './sign-in.styles.scss';
 import { SignInFormProps } from 'core/models/sign-in-props.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
-import { signInWithGoogle } from 'core/services/firebase/firebase.service';
+import { auth, signInWithGoogle } from 'core/services/firebase/firebase.service';
 
 export const SignIn: FC = () => {
 
   const [signInForm, setSignInForm] = useState<SignInFormProps>({ email: '', password: '' });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSignInForm({ email: '', password: '' });
+    const { email, password } = signInForm;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setSignInForm({ email: '', password: '' });
+    }
+    catch (err) { console.error('Error signing in.', err); }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
