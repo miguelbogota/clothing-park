@@ -9,7 +9,7 @@ import { Authentication } from 'pages/authentication/authentication.component';
 import { NotFound } from 'pages/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser } from 'core/models/user.model';
-import { setCurrentUser } from 'state/user/user.actions';
+import { setCurrentUser } from 'redux/user/user.actions';
 
 export const AppBase: FC = () => {
 
