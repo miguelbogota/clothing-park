@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
 import { Home } from 'pages/home/home.component';
@@ -8,8 +9,9 @@ import { Authentication } from 'pages/authentication/authentication.component';
 import { NotFound } from 'pages/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser } from 'core/models/user.model';
+import { setCurrentUser } from 'state/user/user.actions';
 
-export const App: FC = () => {
+export const AppBase: FC = () => {
 
   const [currentUser, setCurrentUser] = useState<ShopUser | null>(null);
   useEffect(() => {
@@ -28,7 +30,7 @@ export const App: FC = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar currentUser={currentUser} />
+      <NavigationBar />
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/shop" component={Shop} exact />
@@ -38,3 +40,6 @@ export const App: FC = () => {
     </BrowserRouter>
   );
 };
+
+const mapDispatchToProps = (dispatch: any) => ({ setCurrentUser: (user: ShopUser) => dispatch(setCurrentUser(user)) });
+export const App: FC = connect(null, mapDispatchToProps)(AppBase);

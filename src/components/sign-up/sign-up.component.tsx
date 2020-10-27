@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import './sign-up.styles.scss';
 
-import { SignUpFormProps } from 'core/models/sign-up-props.model';
+import { SignUpFormProps } from 'core/models/props/sign-up.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';

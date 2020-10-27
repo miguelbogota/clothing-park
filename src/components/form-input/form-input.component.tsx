@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './form-input.styles.scss';
-import { FormInputProps } from 'core/models/form-input-props.model';
+import { FormInputProps } from 'core/models/props/form-input.model';
 
 /**
  * Functions returns a string with random caracters as an Id.

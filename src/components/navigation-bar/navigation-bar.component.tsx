@@ -3,9 +3,11 @@ import './navigation-bar.styles.scss';
 import { Link } from 'react-router-dom';
 import { auth } from 'core/services/firebase/firebase.service';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
-import { ShopUser } from 'core/models/user.model';
+import { connect } from 'react-redux';
+import { ReduxReducer } from 'core/models/state.model';
+import { AuthUserProps } from 'core/models/props/auth-user';
 
-export const NavigationBar: FC<{ currentUser: ShopUser | null }> = ({ currentUser = null }) => {
+export const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
   return (
     <nav className='navigation-bar'>
       <Link className='logo-container' to='/'>
@@ -27,3 +29,6 @@ export const NavigationBar: FC<{ currentUser: ShopUser | null }> = ({ currentUse
     </nav>
   );
 };
+
+const mapStateToProps = (state: ReduxReducer) => ({ currentUser: state.user });
+export const NavigationBar: FC = connect(mapStateToProps)(NavigationBarBase);
