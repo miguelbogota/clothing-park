@@ -6,7 +6,7 @@
   line-height: 50px;
   padding: 0 15px;
   font-size: 0.8rem;
-  color: #f2f2f2;
+  color: #ffffff;
   text-transform: uppercase;
   font-weight: bolder;
   border: 2px solid #333333;
@@ -16,13 +16,13 @@
   background-color: #333333;
 
   &:hover {
-    background-color: #f2f2f2 !important;
+    background-color: #ffffff !important;
     color: #333333;
   }
 
   &.google-sign-in {
     background-color: #4285f4;
-    color: #f2f2f2;
+    color: #ffffff;
     border: 2px solid #4285f4;
 
     &:hover {

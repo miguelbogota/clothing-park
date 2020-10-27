@@ -1,13 +1,10 @@
-import { ChangeEvent } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 /**
  * Required props for an form input.
  */
-export interface FormInputProps {
+export interface FormInputProps extends ComponentPropsWithoutRef<'input'> {
   id: string;
   label: string;
-  type: string;
   value: string;
-  required: boolean;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
