@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { Dispatch, FC, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,24 +8,28 @@ import { Shop } from 'pages/shop/shop.component';
 import { Authentication } from 'pages/authentication/authentication.component';
 import { NotFound } from 'pages/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
-import { ShopUser } from 'core/models/user.model';
-import { setCurrentUser } from 'redux/user/user.actions';
+import { ShopUser, ShopUserNull } from 'core/models/user.model';
+import { setCurrentUser } from 'state/user/user.actions';
+import { ReduxState } from 'core/models/state.model';
 
-export const AppBase: FC = () => {
+interface IConnectedDispatch {
+  setCurrentUser: (user: ShopUserNull) => void;
+}
 
-  const [currentUser, setCurrentUser] = useState<ShopUser | null>(null);
+const AppBase: FC<IConnectedDispatch> = (props: IConnectedDispatch) => {
+
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user, {});
         userRef?.onSnapshot((snapshot) => {
-          setCurrentUser({ uid: snapshot.id, ...snapshot.data() as ShopUser });
+          props.setCurrentUser({ uid: snapshot.id, ...snapshot.data() as ShopUser });
         });
       }
-      else { setCurrentUser(null); }
+      else { props.setCurrentUser(null); }
     });
     return () => unsubscribeFromAuth();
-  }, [currentUser]);
+  });
 
 
   return (
@@ -41,5 +45,7 @@ export const AppBase: FC = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({ setCurrentUser: (user: ShopUser) => dispatch(setCurrentUser(user)) });
+const mapDispatchToProps = (dispatch: Dispatch<ReduxState<ShopUserNull>>): IConnectedDispatch => {
+  return ({ setCurrentUser: (user: ShopUserNull) => dispatch(setCurrentUser(user)) });
+};
 export const App: FC = connect(null, mapDispatchToProps)(AppBase);

@@ -1,6 +1,4 @@
-/**
- * User to store in the database.
- */
+/** User to store in the database. */
 export interface ShopUser {
   uid?: string;
   email: string;
@@ -8,3 +6,6 @@ export interface ShopUser {
   photoURL: string | null;
   createdAt: Date;
 }
+
+/** Nullable type for ShopUser. */
+export type ShopUserNull = ShopUser | null;

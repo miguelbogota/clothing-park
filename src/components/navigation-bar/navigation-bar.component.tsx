@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { ReduxReducer } from 'core/models/state.model';
 import { AuthUserProps } from 'core/models/props/auth-user';
 
-export const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
+const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
   return (
     <nav className='navigation-bar'>
       <Link className='logo-container' to='/'>
