@@ -5,7 +5,7 @@ import { auth } from 'core/services/firebase/firebase.service';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import { connect } from 'react-redux';
 import { ReduxReducer } from 'core/models/state.model';
-import { AuthUserProps } from 'core/models/props/auth-user';
+import { AuthUserProps } from 'core/models/props/auth-user.model';
 
 const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
   return (

@@ -1,4 +1,6 @@
-import { ReduxState } from 'core/models/state.model';
 import { ShopUserNull } from 'core/models/user.model';
+import { UserActions } from 'core/models/state-actions/user-state.model';
 
-export const setCurrentUser = (user: ShopUserNull): ReduxState<ShopUserNull> => ({ type: 'SET_CURRENT_USER', payload: user });
+export const setCurrentUser = (user: ShopUserNull): UserActions<ShopUserNull> => {
+  return ({ type: 'SET_CURRENT_USER', payload: user });
+};

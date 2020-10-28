@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
@@ -10,27 +10,31 @@ import { NotFound } from 'pages/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser, ShopUserNull } from 'core/models/user.model';
 import { setCurrentUser } from 'state/user/user.actions';
-import { ReduxState } from 'core/models/state.model';
+import { ReduxReducer } from 'core/models/state.model';
+import { UserActions } from 'core/models/state-actions/user-state.model';
 
-interface IConnectedDispatch {
+interface ConnectedDispatch {
   setCurrentUser: (user: ShopUserNull) => void;
 }
 
-const AppBase: FC<IConnectedDispatch> = (props: IConnectedDispatch) => {
+interface AppProps extends ConnectedDispatch {
+  currentUser: ShopUserNull;
+}
+
+const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = () => console.error('Error!') }) => {
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user, {});
         userRef?.onSnapshot((snapshot) => {
-          props.setCurrentUser({ uid: snapshot.id, ...snapshot.data() as ShopUser });
+          setCurrentUser({ uid: snapshot.id, ...snapshot.data() as ShopUser });
         });
       }
-      else { props.setCurrentUser(null); }
+      else { setCurrentUser(null); }
     });
     return () => unsubscribeFromAuth();
-  });
-
+  }, [setCurrentUser]);
 
   return (
     <BrowserRouter>
@@ -38,14 +42,17 @@ const AppBase: FC<IConnectedDispatch> = (props: IConnectedDispatch) => {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/shop" component={Shop} exact />
-        <Route path="/signin" component={Authentication} exact />
+        <Route path="/signin" exact render={() => currentUser ? (<Redirect to='/' />) : (<Authentication />)} />
         <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxState<ShopUserNull>>): IConnectedDispatch => {
+
+const mapStateToProps = (state: ReduxReducer) => ({ currentUser: state.user });
+
+const mapDispatchToProps = (dispatch: Dispatch<UserActions<ShopUserNull>>): ConnectedDispatch => {
   return ({ setCurrentUser: (user: ShopUserNull) => dispatch(setCurrentUser(user)) });
 };
-export const App: FC = connect(null, mapDispatchToProps)(AppBase);
+export const App: FC = connect(mapStateToProps, mapDispatchToProps)(AppBase);
