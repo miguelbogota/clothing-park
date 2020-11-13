@@ -3,11 +3,17 @@ import './navigation-bar.styles.scss';
 import { Link } from 'react-router-dom';
 import { auth } from 'core/services/firebase/firebase.service';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
+import { CartIcon } from 'components/cart-icon/cart-icon.component';
+import { CartDropdown } from 'components/cart-dropdown/cart-dropdown.component';
 import { connect } from 'react-redux';
 import { ReduxReducer } from 'core/models/state.model';
 import { AuthUserProps } from 'core/models/props/auth-user.model';
 
-const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
+interface NavigationProps extends AuthUserProps {
+  cart: boolean;
+}
+
+const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, cart = false }) => {
   return (
     <nav className='navigation-bar'>
       <Link className='logo-container' to='/'>
@@ -25,10 +31,12 @@ const NavigationBarBase: FC<AuthUserProps> = ({ currentUser = null }) => {
             ? <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
             : <Link className='option' to='/signin'>SIGN IN</Link>
         }
+        <CartIcon />
       </div>
+      {cart ? <CartDropdown /> : null}
     </nav>
   );
 };
 
-const mapStateToProps = (state: ReduxReducer) => ({ currentUser: state.user });
+const mapStateToProps = ({ user, cart }: ReduxReducer) => ({ currentUser: user, cart });
 export const NavigationBar: FC = connect(mapStateToProps)(NavigationBarBase);

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './collection-item.styles.scss';
 import { ShopItem } from 'core/models/item.model';
 
-export const CollectionItem: FC<ShopItem> = ({ id = 0, name ='', imageUrl = '', price = 0 }) => {
+export const CollectionItem: FC<ShopItem> = ({ name = '', imageUrl = '', price = 0 }) => {
   return (
     <div className='collection-item'>
       <div

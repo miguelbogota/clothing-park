@@ -20,7 +20,10 @@ export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> => aut
  * @param userAuth User to add to the db.
  * @param additionalData Additional data to merge with the user.
  */
-export const createUserProfileDocument = async (userAuth: firebase.User | null, additionalData: any): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | null> => {
+export const createUserProfileDocument = async (
+  userAuth: firebase.User | null,
+  additionalData: any
+): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | null> => {
   if (!userAuth) { return null; }
   const docRef = firestore.doc(`users/${userAuth.uid}`);
   const snapshot = await docRef.get();
