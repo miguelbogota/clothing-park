@@ -10,8 +10,8 @@ export const CollectionPreview: FC<ShopCollection> = ({ title = '', items = [] }
       <div className='collection-items'>
         {items
           .filter((item, idx) => idx < 4)
-          .map(({ id, ...itemsProps }) => (
-            <CollectionItem key={id} {...itemsProps} />
+          .map((item) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
       </div>
     </div>

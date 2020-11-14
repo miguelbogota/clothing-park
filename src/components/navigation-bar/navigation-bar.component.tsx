@@ -6,14 +6,14 @@ import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import { CartIcon } from 'components/cart-icon/cart-icon.component';
 import { CartDropdown } from 'components/cart-dropdown/cart-dropdown.component';
 import { connect } from 'react-redux';
-import { ReduxReducer } from 'core/models/state.model';
+import { ReduxReducer } from 'core/models/state-actions/state.model';
 import { AuthUserProps } from 'core/models/props/auth-user.model';
 
 interface NavigationProps extends AuthUserProps {
-  cart: boolean;
+  hidden: boolean;
 }
 
-const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, cart = false }) => {
+const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, hidden = false }) => {
   return (
     <nav className='navigation-bar'>
       <Link className='logo-container' to='/'>
@@ -33,10 +33,10 @@ const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, cart = fal
         }
         <CartIcon />
       </div>
-      {cart ? <CartDropdown /> : null}
+      {hidden ? <CartDropdown /> : null}
     </nav>
   );
 };
 
-const mapStateToProps = ({ user, cart }: ReduxReducer) => ({ currentUser: user, cart });
+const mapStateToProps = ({ user: { current }, cart: { hidden }}: ReduxReducer) => ({ currentUser: current, hidden });
 export const NavigationBar: FC = connect(mapStateToProps)(NavigationBarBase);

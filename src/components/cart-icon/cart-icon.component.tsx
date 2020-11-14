@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { toggleCartHidden } from 'state/cart/cart.actions';
 import { CartActions } from 'core/models/state-actions/cart-state.model';
 
-const unHandledToggle = () => console.error('Not handled');
+const unHandled = () => console.error('Not handled');
 
 interface ConnectedDispatch {
   toggleCartHidden: () => void;
 }
 
-const CartIconBase: FC<ConnectedDispatch> = ({ toggleCartHidden = unHandledToggle  }) => {
+const CartIconBase: FC<ConnectedDispatch> = ({ toggleCartHidden = unHandled  }) => {
   return (
     <div className='cart-icon' onClick={toggleCartHidden}>
       <ShoppingIcon className='shopping-icon' />
@@ -20,7 +20,7 @@ const CartIconBase: FC<ConnectedDispatch> = ({ toggleCartHidden = unHandledToggl
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<CartActions<boolean>>): ConnectedDispatch => {
+const mapDispatchToProps = (dispatch: Dispatch<CartActions>): ConnectedDispatch => {
   return ({ toggleCartHidden: () => dispatch(toggleCartHidden()) });
 };
 export const CartIcon: FC = connect(null, mapDispatchToProps)(CartIconBase);

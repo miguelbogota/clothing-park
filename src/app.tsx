@@ -8,30 +8,32 @@ import { Shop } from 'pages/shop/shop.component';
 import { Authentication } from 'pages/authentication/authentication.component';
 import { NotFound } from 'pages/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
-import { ShopUser, ShopUserNull } from 'core/models/user.model';
+import { ShopUser } from 'core/models/user.model';
 import { setCurrentUser } from 'state/user/user.actions';
-import { ReduxReducer } from 'core/models/state.model';
-import { UserActions } from 'core/models/state-actions/user-state.model';
+import { UserActions, UserState } from 'core/models/state-actions/user-state.model';
+import { ReduxReducer } from 'core/models/state-actions/state.model';
+
+const unHandled = () => console.error('Not handled');
 
 interface ConnectedDispatch {
-  setCurrentUser: (user: ShopUserNull) => void;
+  setCurrentUser: (user: UserState) => void;
 }
 
 interface AppProps extends ConnectedDispatch {
-  currentUser: ShopUserNull;
+  currentUser: UserState;
 }
 
-const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = () => console.error('Error!') }) => {
+const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = unHandled }) => {
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user, {});
         userRef?.onSnapshot((snapshot) => {
-          setCurrentUser({ uid: snapshot.id, ...snapshot.data() as ShopUser });
+          setCurrentUser({ current: { uid: snapshot.id, ...snapshot.data() as ShopUser }});
         });
       }
-      else { setCurrentUser(null); }
+      else { setCurrentUser({ current: null }); }
     });
     return () => unsubscribeFromAuth();
   }, [setCurrentUser]);
@@ -50,9 +52,9 @@ const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = () => cons
 };
 
 
-const mapStateToProps = (state: ReduxReducer) => ({ currentUser: state.user });
+const mapStateToProps = ({ user: { current }}: ReduxReducer) => ({ currentUser: current } as unknown as AppProps);
 
-const mapDispatchToProps = (dispatch: Dispatch<UserActions<ShopUserNull>>): ConnectedDispatch => {
-  return ({ setCurrentUser: (user: ShopUserNull) => dispatch(setCurrentUser(user)) });
+const mapDispatchToProps = (dispatch: Dispatch<UserActions>): ConnectedDispatch => {
+  return ({ setCurrentUser: (user: UserState) => dispatch(setCurrentUser(user)) });
 };
 export const App: FC = connect(mapStateToProps, mapDispatchToProps)(AppBase);

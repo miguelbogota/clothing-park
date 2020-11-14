@@ -7,8 +7,8 @@ import { UIButton } from 'components/ui-button/ui-button.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 
 export const SignUp: FC = () => {
-
-  const [signUpForm, setSignUpForm] = useState<SignUpFormProps>({ displayName: '', email: '', password: '', confirmPassword: '' });
+  const INITIAL_VALUES = { displayName: '', email: '', password: '', confirmPassword: '' };
+  const [signUpForm, setSignUpForm] = useState<SignUpFormProps>(INITIAL_VALUES);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

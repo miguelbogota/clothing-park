@@ -1,10 +1,13 @@
-import { ShopUser, ShopUserNull } from 'core/models/user.model';
-import { UserActions } from 'core/models/state-actions/user-state.model';
+import { UserActions, UserState } from 'core/models/state-actions/user-state.model';
 
-export const userReducer = (state: ShopUserNull = null, action: UserActions<ShopUserNull>): ShopUserNull => {
+const INITIAL_VALUES: UserState = {
+  current: null
+};
+
+export const userReducer = (state = INITIAL_VALUES, action: UserActions): UserState => {
 
   switch (action.type) {
-    case 'SET_CURRENT_USER': return action.payload ? { ...state, ...action.payload } as ShopUser : null;
+    case 'SET_CURRENT_USER': return { ...state, ...action.payload };
     default: return state;
   }
 

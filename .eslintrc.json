@@ -32,9 +32,9 @@
       "comments": 90,
       "ignoreTrailingComments": true,
       "ignoreUrls": true,
-      "ignoreStrings": true,
-      "ignoreTemplateLiterals": true,
-      "ignoreRegExpLiterals": true
+      "ignoreStrings": false,
+      "ignoreTemplateLiterals": false,
+      "ignoreRegExpLiterals": false
     }],
     "object-curly-spacing": ["error", "always", {
       "arraysInObjects": true,

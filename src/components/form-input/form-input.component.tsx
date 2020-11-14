@@ -16,7 +16,11 @@ export const FormInput: FC<FormInputProps> = ({ label = '', id = generateRandomI
       <input className='form-input' id={id} {...InputProps} />
       {
         label
-          ? (<label className={`form-input-label${InputProps.value.length ? ' shrink' : ''}`} htmlFor={id}>{label}</label>)
+          ? (
+            <label className={`form-input-label ${InputProps.value.length ? 'shrink' : ''}`} htmlFor={id}>
+              {label}
+            </label>
+          )
           : null
       }
     </div>

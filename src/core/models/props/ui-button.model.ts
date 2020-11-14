@@ -5,4 +5,5 @@ import { ComponentPropsWithoutRef } from 'react';
  */
 export interface UIButtonProps extends ComponentPropsWithoutRef<'button'> {
   isGoogleSignIn?: boolean;
+  inverted?: boolean;
 }
