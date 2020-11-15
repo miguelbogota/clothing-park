@@ -6,4 +6,5 @@ export interface ShopItem {
   name: string;
   imageUrl: string;
   price: number;
+  quantity?: number;
 }

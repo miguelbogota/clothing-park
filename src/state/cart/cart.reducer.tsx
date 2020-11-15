@@ -1,5 +1,5 @@
-import { ShopItem } from 'core/models/item.model';
 import { CartActions, CartState } from 'core/models/state-actions/cart-state.model';
+import { addItemToCart } from './cart.util';
 
 const INITIAL_VALUES: CartState = {
   hidden: false,
@@ -10,7 +10,7 @@ export const cartReducer = (state = INITIAL_VALUES, action: CartActions): CartSt
 
   switch (action.type) {
     case 'TOGGLE_CART_HIDDEN': return { ...state, hidden: !state.hidden };
-    case 'ADD_ITEM': return { ...state, cartItems: [...state.cartItems, action.payload as unknown as ShopItem] };
+    case 'ADD_ITEM': return { ...state, cartItems: addItemToCart(state.cartItems, action.payload) };
     default: return state;
   }
 
