@@ -9,7 +9,7 @@ import { Authentication } from 'views/authentication/authentication.component';
 import { NotFound } from 'views/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser } from 'core/models/user.model';
-import { setCurrentUser } from 'state/user/user.actions';
+import { setCurrentUser } from 'core/state/user/user.actions';
 import { UserActions, UserState } from 'core/models/state-actions/user-state.model';
 import { ReduxReducer } from 'core/models/state-actions/state.model';
 

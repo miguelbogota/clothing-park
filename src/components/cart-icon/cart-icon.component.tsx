@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './cart-icon.styles.scss';
 import { ReactComponent as ShoppingIcon } from 'assets/images/shopping-bag.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCartHidden } from 'state/cart/cart.actions';
+import { toggleCartHidden } from 'core/state/cart/cart.actions';
 import { ReduxReducer } from 'core/models/state-actions/state.model';
 
 export const CartIcon: FC = () => {
