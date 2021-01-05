@@ -60,6 +60,7 @@
     "spaced-comment": ["error", "always", {
       "line": { "markers": ["!"] },
       "block": { "balanced": true, "markers": ["!"], "exceptions": ["*"] }
-    }]
+    }],
+    "react/prop-types": [0]
   }
 }

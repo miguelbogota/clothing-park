@@ -3,7 +3,7 @@ import './ui-button.styles.scss';
 import { UIButtonProps } from 'core/models/props/ui-button.model';
 
 export const UIButton: FC<UIButtonProps> = ({
-  children = null,
+  children,
   type = 'button',
   isGoogleSignIn = false,
   inverted = false,

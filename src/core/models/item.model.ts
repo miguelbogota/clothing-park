@@ -2,7 +2,7 @@
  * Is an item for the shop.
  */
 export interface ShopItem {
-  id?: number;
+  id: number;
   name: string;
   imageUrl: string;
   price: number;

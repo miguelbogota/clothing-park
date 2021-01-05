@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
 import { Home } from 'views/home/home.component';
+import { Checkout } from 'views/checkout/checkout.component';
 import { Shop } from 'views/shop/shop.component';
 import { Authentication } from 'views/authentication/authentication.component';
 import { NotFound } from 'views/not-found/not-found.component';
@@ -35,7 +36,8 @@ export const App: FC = () => {
       <NavigationBar />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/shop" component={Shop} exact />
+        <Route path="/shop" component={Shop} />
+        <Route path="/checkout" component={Checkout} exact />
         <Route path="/signin" exact render={() => currentUser ? (<Redirect to='/' />) : (<Authentication />)} />
         <Route path="*" component={NotFound} />
       </Switch>

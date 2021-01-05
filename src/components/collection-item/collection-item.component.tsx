@@ -5,7 +5,7 @@ import { UIButton } from 'components/ui-button/ui-button.component';
 import { useDispatch } from 'react-redux';
 import { addItem } from 'core/state/cart/cart.actions';
 
-export const CollectionItem: FC<{ item: ShopItem; }> = ({ item = { name: '', imageUrl: '', price: 0 } }) => {
+export const CollectionItem: FC<{ item: ShopItem; }> = ({ item }) => {
   const dispatch = useDispatch();
   const { imageUrl, name, price } = item;
   return (

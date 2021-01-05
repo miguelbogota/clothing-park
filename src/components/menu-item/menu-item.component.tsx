@@ -9,7 +9,7 @@ interface MenuItemProps {
   size?: string;
 }
 
-export const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, linkUrl, size }: MenuItemProps) => {
+export const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, linkUrl, size }) => {
   const history = useHistory();
   const match = useRouteMatch();
   return (
