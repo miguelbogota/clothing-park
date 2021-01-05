@@ -5,15 +5,13 @@ import { auth } from 'core/services/firebase/firebase.service';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import { CartIcon } from 'components/cart-icon/cart-icon.component';
 import { CartDropdown } from 'components/cart-dropdown/cart-dropdown.component';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReduxReducer } from 'core/models/state-actions/state.model';
-import { AuthUserProps } from 'core/models/props/auth-user.model';
 
-interface NavigationProps extends AuthUserProps {
-  hidden: boolean;
-}
-
-const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, hidden = false }) => {
+export const NavigationBar: FC = () => {
+  const { currentUser, hidden } = useSelector(
+    ({ user: { current }, cart: { hidden } }: ReduxReducer) => ({ currentUser: current, hidden }),
+  );
   return (
     <nav className='navigation-bar'>
       <Link className='logo-container' to='/'>
@@ -37,6 +35,3 @@ const NavigationBarBase: FC<NavigationProps> = ({ currentUser = null, hidden = f
     </nav>
   );
 };
-
-const mapStateToProps = ({ user: { current }, cart: { hidden }}: ReduxReducer) => ({ currentUser: current, hidden });
-export const NavigationBar: FC = connect(mapStateToProps)(NavigationBarBase);

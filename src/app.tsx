@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
-import { Home } from 'pages/home/home.component';
-import { Shop } from 'pages/shop/shop.component';
-import { Authentication } from 'pages/authentication/authentication.component';
-import { NotFound } from 'pages/not-found/not-found.component';
+import { Home } from 'views/home/home.component';
+import { Shop } from 'views/shop/shop.component';
+import { Authentication } from 'views/authentication/authentication.component';
+import { NotFound } from 'views/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser } from 'core/models/user.model';
 import { setCurrentUser } from 'state/user/user.actions';
