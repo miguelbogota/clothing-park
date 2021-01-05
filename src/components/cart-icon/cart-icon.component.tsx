@@ -6,8 +6,8 @@ import { toggleCartHidden } from 'state/cart/cart.actions';
 import { ReduxReducer } from 'core/models/state-actions/state.model';
 
 export const CartIcon: FC = () => {
-  const { itemCount } = useSelector(({ cart: { cartItems }}: ReduxReducer) => ({
-    itemCount: cartItems.reduce((acc, item) => acc + (item.quantity ? item.quantity : 0), 0)
+  const { itemCount } = useSelector(({ cart: { cartItems } }: ReduxReducer) => ({
+    itemCount: cartItems.reduce((acc, item) => acc + (item.quantity ? item.quantity : 0), 0),
   }));
   const dispatch = useDispatch();
   return (

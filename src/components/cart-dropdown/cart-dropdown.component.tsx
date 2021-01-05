@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { ShopItem } from 'core/models/item.model';
 
 export const CartDropdown: FC = () => {
-  const { cartItems } = useSelector(({ cart: { cartItems }}: ReduxReducer) => ({ cartItems }));
+  const { cartItems } = useSelector(({ cart: { cartItems } }: ReduxReducer) => ({ cartItems }));
   return (
     <div className='cart-dropdown'>
       <div className="cart-items">

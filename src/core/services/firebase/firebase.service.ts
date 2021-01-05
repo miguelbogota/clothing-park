@@ -22,7 +22,7 @@ export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> => aut
  */
 export const createUserProfileDocument = async (
   userAuth: firebase.User | null,
-  additionalData: any
+  additionalData: any,
 ): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | null> => {
   if (!userAuth) { return null; }
   const docRef = firestore.doc(`users/${userAuth.uid}`);

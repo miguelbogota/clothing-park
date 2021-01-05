@@ -11,7 +11,7 @@ export const addItemToCart = (cartItems: ShopItem[], cartItemToAdd: ShopItem): S
     return cartItems.map((cartItem: ShopItem) =>
       cartItem.id === cartItemToAdd.id
         ? { ...cartItem, quantity: cartItem.quantity ? cartItem.quantity + 1 : 1 }
-        : cartItem
+        : cartItem,
     );
   }
   return [...cartItems, { ...cartItemToAdd, quantity: 1 } as ShopItem];

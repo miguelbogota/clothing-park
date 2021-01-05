@@ -30,7 +30,7 @@ const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = unHandled 
       if (user) {
         const userRef = await createUserProfileDocument(user, {});
         userRef?.onSnapshot((snapshot) => {
-          setCurrentUser({ current: { uid: snapshot.id, ...snapshot.data() as ShopUser }});
+          setCurrentUser({ current: { uid: snapshot.id, ...snapshot.data() as ShopUser } });
         });
       }
       else { setCurrentUser({ current: null }); }
@@ -52,7 +52,7 @@ const AppBase: FC<AppProps> = ({ currentUser = null, setCurrentUser = unHandled 
 };
 
 
-const mapStateToProps = ({ user: { current }}: ReduxReducer) => ({ currentUser: current } as unknown as AppProps);
+const mapStateToProps = ({ user: { current } }: ReduxReducer) => ({ currentUser: current } as unknown as AppProps);
 
 const mapDispatchToProps = (dispatch: Dispatch<UserActions>): ConnectedDispatch => {
   return ({ setCurrentUser: (user: UserState) => dispatch(setCurrentUser(user)) });
