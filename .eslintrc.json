@@ -42,7 +42,7 @@
       "objectsInArrays": false,
       "arraysInArrays": false
     }],
-    "indent": ["error", 2, {
+    "@typescript-eslint/indent": ["error", 2, {
       "SwitchCase": 1,
       "VariableDeclarator": "first",
       "outerIIFEBody": 1,

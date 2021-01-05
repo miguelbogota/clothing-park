@@ -1,5 +1,5 @@
 import { ShopItem } from 'core/models/item.model';
-import { CartActions } from 'core/models/state-actions/cart-state.model';
+import { CartActions } from '../../models/state/cart.models';
 
 export const toggleCartHidden = (): CartActions => {
   return { type: 'TOGGLE_CART_HIDDEN' };

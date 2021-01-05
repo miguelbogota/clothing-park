@@ -1,11 +1,11 @@
-import { ReduxStates } from 'core/models/state-actions/state.model';
-import { ShopItem } from '../item.model';
+import { ShopItem } from 'core/models/item.model';
+import { ReduxDispatch } from '../../state/root.models';
 
 /** Type with the actions for the cart. */
 export type CartStateActions = 'TOGGLE_CART_HIDDEN' | 'ADD_ITEM';
 
-/** Type with return type and actions for cart.  */
-export type CartActions = ReduxStates<CartStateActions>
+/** Dispatch interface for the cart.  */
+export type CartActions = ReduxDispatch<CartStateActions>
 
 /** State for the cart. */
 export interface CartState {
