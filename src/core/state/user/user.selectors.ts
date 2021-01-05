@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { RootState } from '../root.models';
+import { RootState } from '../../models/state/root.models';
 
 const selectUser = (state: RootState) => state.user;
 

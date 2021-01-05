@@ -1,5 +1,5 @@
 import { ShopItem } from 'core/models/item.model';
-import { ReduxDispatch } from '../../state/root.models';
+import { ReduxDispatch } from './root.models';
 
 /** Type with the actions for the cart. */
 export type CartStateActions =
