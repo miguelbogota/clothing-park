@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
-import { Home } from 'views/home/home.component';
-import { Checkout } from 'views/checkout/checkout.component';
+import { HomePage } from 'views/home/home.component';
+import { CheckoutPage } from 'views/checkout/checkout.component';
 import { Shop } from 'views/shop/shop.component';
-import { Authentication } from 'views/authentication/authentication.component';
-import { NotFound } from 'views/not-found/not-found.component';
+import { AuthenticationPage } from 'views/authentication/authentication.component';
+import { NotFoundPage } from 'views/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
 import { ShopUser } from 'core/models/user.model';
 import { setCurrentUser } from 'core/state/user/user.actions';
@@ -35,11 +35,11 @@ export const App: FC = () => {
     <BrowserRouter>
       <NavigationBar />
       <Switch>
-        <Route path="/" component={Home} exact />
+        <Route path="/" component={HomePage} exact />
         <Route path="/shop" component={Shop} />
-        <Route path="/checkout" component={Checkout} exact />
-        <Route path="/signin" exact render={() => currentUser ? (<Redirect to='/' />) : (<Authentication />)} />
-        <Route path="*" component={NotFound} />
+        <Route path="/checkout" component={CheckoutPage} exact />
+        <Route path="/signin" exact render={() => currentUser ? (<Redirect to='/' />) : (<AuthenticationPage />)} />
+        <Route path="*" component={NotFoundPage} />
       </Switch>
     </BrowserRouter>
   );

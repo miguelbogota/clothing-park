@@ -4,7 +4,7 @@ import { selectCartItems, selectCartTotal } from 'core/state/cart/cart.selectors
 import { useSelector } from 'react-redux';
 import { CheckoutItem } from 'components/checkout-item/checkout-item.component';
 
-export const Checkout: FC = () => {
+export const CheckoutPage: FC = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   return (
