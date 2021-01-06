@@ -1,8 +1,9 @@
 import { ShopActions, ShopState } from '../../models/state/shop.models';
 
+// Can't change routeName
 const INITIAL_VALUES: ShopState = {
-  collections: [
-    {
+  collections: {
+    hats: {
       id: 1,
       title: 'Hats',
       routeName: 'hats',
@@ -63,7 +64,7 @@ const INITIAL_VALUES: ShopState = {
         },
       ],
     },
-    {
+    sneakers: {
       id: 2,
       title: 'Sneakers',
       routeName: 'sneakers',
@@ -118,7 +119,7 @@ const INITIAL_VALUES: ShopState = {
         },
       ],
     },
-    {
+    jackets: {
       id: 3,
       title: 'Jackets',
       routeName: 'jackets',
@@ -155,7 +156,7 @@ const INITIAL_VALUES: ShopState = {
         },
       ],
     },
-    {
+    women: {
       id: 4,
       title: 'Womens',
       routeName: 'womens',
@@ -204,7 +205,7 @@ const INITIAL_VALUES: ShopState = {
         },
       ],
     },
-    {
+    men: {
       id: 5,
       title: 'Mens',
       routeName: 'mens',
@@ -247,7 +248,7 @@ const INITIAL_VALUES: ShopState = {
         },
       ],
     },
-  ],
+  },
 };
 
 export const shopReducer = (state = INITIAL_VALUES, action: ShopActions): ShopState => {

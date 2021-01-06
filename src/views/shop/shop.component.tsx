@@ -9,7 +9,7 @@ export const Shop: FC = () => {
   return (
     <div className='shop-page'>
       <Route path={`${match.path}`} component={CollectionOverview} exact />
-      <Route path={`${match.path}/:categoryId`} component={CollectionPage} />
+      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
     </div>
   );
 };

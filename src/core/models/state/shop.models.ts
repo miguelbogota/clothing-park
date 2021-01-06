@@ -9,5 +9,11 @@ export type ShopActions = ReduxDispatch<ShopStateActions>
 
 /** Model for the state the shop will have */
 export interface ShopState {
-  collections: ShopCollection[];
+  collections: {
+    hats: ShopCollection;
+    jackets: ShopCollection;
+    sneakers: ShopCollection;
+    women: ShopCollection;
+    men: ShopCollection;
+  };
 }

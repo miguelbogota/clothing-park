@@ -6,10 +6,18 @@ import { CollectionPreview } from 'components/collection-preview/collection-prev
 
 export const CollectionOverview: FC = () => {
   const collections = useSelector(selectShopCollections);
+  const collectionsKeys = Object.keys(collections);
+  type ColKey = keyof typeof collections;
   return (
     <div className='collection-overview'>
-      {collections.map(({ id, ...collectionProps }) => (
-        <CollectionPreview key={id} id={id} {...collectionProps} />
+      {collectionsKeys.map(keyName => (
+        <CollectionPreview
+          key={collections[keyName as ColKey].id}
+          id={collections[keyName as ColKey].id}
+          items={collections[keyName as ColKey].items}
+          routeName={collections[keyName as ColKey].routeName}
+          title={collections[keyName as ColKey].title}
+        />
       ))}
     </div>
   );
