@@ -6,7 +6,7 @@ import { selectShopCollection } from 'core/state/shop/shop.selectors';
 import { CollectionItem } from 'components/collection-item/collection-item.component';
 
 export const CollectionPage: FC = () => {
-  const match = useRouteMatch<{ collectionId: 'hats' | 'jackets' | 'sneakers' | 'women' | 'men' }>();
+  const match = useRouteMatch<{ collectionId: 'hats' | 'jackets' | 'sneakers' | 'womens' | 'mens' }>();
   const collection = useSelector(selectShopCollection(match.params.collectionId));
   return (
     <div className='collection-page'>

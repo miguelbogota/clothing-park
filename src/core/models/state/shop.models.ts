@@ -13,7 +13,7 @@ export interface ShopState {
     hats: ShopCollection;
     jackets: ShopCollection;
     sneakers: ShopCollection;
-    women: ShopCollection;
-    men: ShopCollection;
+    womens: ShopCollection;
+    mens: ShopCollection;
   };
 }
