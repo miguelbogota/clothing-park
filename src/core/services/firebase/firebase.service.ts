@@ -35,3 +35,18 @@ export const createUserProfileDocument = async (
   }
   return docRef;
 };
+
+/**
+ * Function adds object in Firestore in a given path.
+ * @param collectionName Name of the collection to add.
+ * @param objectsToAdd Objects or array to add in Firestore.
+ */
+export const addCollectionAndItem = async <T>(collectionName: string, objectsToAdd: T[]): Promise<void> => {
+  const collectionRef = firestore.collection(collectionName);
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
