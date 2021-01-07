@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
 import { HomePage } from 'views/home/home.component';
 import { CheckoutPage } from 'views/checkout/checkout.component';
-import { Shop } from 'views/shop/shop.component';
+import { ShopPage } from 'views/shop/shop.component';
 import { AuthenticationPage } from 'views/authentication/authentication.component';
 import { NotFoundPage } from 'views/not-found/not-found.component';
 import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
@@ -36,7 +36,7 @@ export const App: FC = () => {
       <NavigationBar />
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/shop" component={Shop} />
+        <Route path="/shop" component={ShopPage} />
         <Route path="/checkout" component={CheckoutPage} exact />
         <Route path="/signin" exact render={() => currentUser ? (<Redirect to='/' />) : (<AuthenticationPage />)} />
         <Route path="*" component={NotFoundPage} />

@@ -2,6 +2,10 @@ import { FirebaseConfig } from '_env';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { ShopCollection } from 'core/models/collection.model';
+import { ShopCollectionsState } from 'core/models/state/shop.models';
+
+type QuerySnapshotDoc = firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>;
 
 firebase.initializeApp(FirebaseConfig);
 
@@ -34,6 +38,23 @@ export const createUserProfileDocument = async (
     catch (err) { console.error('Error creating user in Firestore.', err); }
   }
   return docRef;
+};
+
+/**
+ * Function takes a snapshot and conver it to a map useful in the app.
+ * @param collections Snapshot of the collection to convert to app model.
+ */
+export const convertCollectionSnapshotToMap = (collections: QuerySnapshotDoc) => {
+  const transformCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data() as ShopCollection;
+    const id = doc.id;
+    return { routeName: encodeURI(title.toLocaleLowerCase()), id, title, items } as ShopCollection;
+  });
+  return transformCollection.reduce((acc, collection) => {
+    type CollectionKeyType = keyof typeof acc;
+    acc[collection.title.toLocaleLowerCase() as CollectionKeyType] = collection;
+    return acc;
+  }, {} as ShopCollectionsState);
 };
 
 /**
