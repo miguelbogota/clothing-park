@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import './shop.styles.scss';
+import { ShopContainer } from './shop.styles';
 import { Route, useRouteMatch } from 'react-router-dom';
-import { CollectionOverview } from 'components/collection-overview/collection-overview.component';
+import { CollectionsOverview } from 'components/collections-overview/collections-overview.component';
 import { CollectionPage } from 'views/collection/collection.component';
 
 export const Shop: FC = () => {
   const match = useRouteMatch();
   return (
-    <div className='shop-page'>
-      <Route path={`${match.path}`} component={CollectionOverview} exact />
+    <ShopContainer>
+      <Route path={`${match.path}`} component={CollectionsOverview} exact />
       <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
-    </div>
+    </ShopContainer>
   );
 };

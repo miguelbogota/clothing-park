@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import './not-found.styles.scss';
+import { NotFoundContainer } from './not-found.styles';
 
 export const NotFoundPage: FC = () => {
   return (
-    <div>Error</div>
+    <NotFoundContainer>Page Not Found</NotFoundContainer>
   );
 };

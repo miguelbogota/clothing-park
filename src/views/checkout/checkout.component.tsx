@@ -1,5 +1,10 @@
 import React, { FC } from 'react';
-import './checkout.styles.scss';
+import {
+  CheckoutHeaderContainer,
+  CheckoutPageContainer,
+  HeaderBlockContainer,
+  TotalContainer,
+} from './checkout.styles';
 import { selectCartItems, selectCartTotal } from 'core/state/cart/cart.selectors';
 import { useSelector } from 'react-redux';
 import { CheckoutItem } from 'components/checkout-item/checkout-item.component';
@@ -8,28 +13,28 @@ export const CheckoutPage: FC = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   return (
-    <div className='checkout-page'>
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} item={cartItem} />)}
-      <div className="total">
+      <TotalContainer>
         <span>TOTAL: ${cartTotal}</span>
-      </div>
-    </div>
+      </TotalContainer>
+    </CheckoutPageContainer>
   );
 };

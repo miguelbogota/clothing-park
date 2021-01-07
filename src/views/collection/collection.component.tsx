@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './collection.styles.scss';
+import { CollectionItemsContainer, CollectionPageContainer, CollectionTitle } from './collection.styles';
 import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import { selectShopCollection } from 'core/state/shop/shop.selectors';
@@ -9,11 +9,11 @@ export const CollectionPage: FC = () => {
   const match = useRouteMatch<{ collectionId: 'hats' | 'jackets' | 'sneakers' | 'womens' | 'mens' }>();
   const collection = useSelector(selectShopCollection(match.params.collectionId));
   return (
-    <div className='collection-page'>
-      <h2 className='title'>{collection?.title}</h2>
-      <div className="items">
+    <CollectionPageContainer>
+      <CollectionTitle>{collection?.title}</CollectionTitle>
+      <CollectionItemsContainer>
         {collection?.items.map(item => <CollectionItem key={item.id} item={item} />)}
-      </div>
-    </div>
+      </CollectionItemsContainer>
+    </CollectionPageContainer>
   );
 };

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import './sign-in.styles.scss';
+import { ButtonsBarContainer, SignInContainer, SignInTitle } from './sign-in.styles';
 import { SignInFormProps } from 'core/models/props/sign-in.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
@@ -25,8 +25,8 @@ export const SignIn: FC = () => {
   };
 
   return (
-    <div className='sign-in'>
-      <h2 className='title'>I already have an account</h2>
+    <SignInContainer>
+      <SignInTitle>I already have an account</SignInTitle>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -48,11 +48,11 @@ export const SignIn: FC = () => {
           onChange={handleChange}
           required
         />
-        <div className="buttons">
+        <ButtonsBarContainer>
           <UIButton type='submit'>Sign In</UIButton>
           <UIButton isGoogleSignIn onClick={signInWithGoogle}>Sign In With Google</UIButton>
-        </div>
+        </ButtonsBarContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };

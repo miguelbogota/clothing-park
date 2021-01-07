@@ -1,21 +1,9 @@
 import React, { FC } from 'react';
-import './ui-button.styles.scss';
+import { UIButtonContainer } from './ui-button.styles';
 import { UIButtonProps } from 'core/models/props/ui-button.model';
 
-export const UIButton: FC<UIButtonProps> = ({
-  children,
-  type = 'button',
-  isGoogleSignIn = false,
-  inverted = false,
-  ...otherProps
-}) => {
+export const UIButton: FC<UIButtonProps> = ({ children, ...props }) => {
   return (
-    <button
-      className={`ui-button ${isGoogleSignIn ? 'google-sign-in' : ''} ${inverted ? 'inverted' : ''}`}
-      type={type}
-      {...otherProps}
-    >
-      {children}
-    </button>
+    <UIButtonContainer {...props}>{children}</UIButtonContainer>
   );
 };

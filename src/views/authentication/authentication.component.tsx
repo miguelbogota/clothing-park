@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import './authentication.styles.scss';
+import { AuthenticationContainer } from './authentication.styles';
 import { SignIn } from 'components/sign-in/sign-in.component';
 import { SignUp } from 'components/sign-up/sign-up.component';
 
 export const AuthenticationPage: FC = () => {
   return (
-    <div className='authentication-page'>
+    <AuthenticationContainer>
       <SignIn />
       <SignUp />
-    </div>
+    </AuthenticationContainer>
   );
 };

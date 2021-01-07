@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
-import './cart-dropdown.styles.scss';
-import { UIButton } from 'components/ui-button/ui-button.component';
+import {
+  CartDropdownContainer,
+  CartItemsContainer,
+  EmptyMessageContainer,
+  CartDropdownButton,
+} from './cart-dropdown.styles';
 import { CartItem } from 'components/cart-item/cart-item.component';
 import { useDispatch, useSelector } from 'react-redux';
 import { ShopItem } from 'core/models/item.model';
@@ -20,15 +24,15 @@ export const CartDropdown: FC = () => {
   };
 
   return (
-    <div className='cart-dropdown'>
-      <div className="cart-items">
+    <CartDropdownContainer>
+      <CartItemsContainer>
         {
           cartItems.length
             ? cartItems.map((cartItem: ShopItem) => <CartItem key={cartItem.id} item={cartItem} />)
-            : (<span className="empty-message">Your cart is empty</span>)
+            : (<EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>)
         }
-      </div>
-      <UIButton onClick={goToCheckout}>Go TO CHECKOUT</UIButton>
-    </div>
+      </CartItemsContainer>
+      <CartDropdownButton onClick={goToCheckout}>Go TO CHECKOUT</CartDropdownButton>
+    </CartDropdownContainer>
   );
 };

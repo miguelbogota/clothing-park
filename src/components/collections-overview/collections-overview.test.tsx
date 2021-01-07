@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { CollectionOverview } from './collection-overview.component';
+import { CollectionsOverview } from './collections-overview.component';
 
 test('renders learn react link', () => {
-  const { getByText } = render(<CollectionOverview />);
+  const { getByText } = render(<CollectionsOverview />);
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

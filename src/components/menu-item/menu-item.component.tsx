@@ -1,6 +1,12 @@
 import React, { FC } from 'react';
+import {
+  BackgroundImageContainer,
+  ContentContainer,
+  ContentSubtitle,
+  ContentTitle,
+  MenuItemContainer,
+} from './menu-item.styles';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import './menu-item.styles.scss';
 
 interface MenuItemProps {
   title: string;
@@ -13,20 +19,12 @@ export const MenuItem: FC<MenuItemProps> = ({ title, imageUrl, linkUrl, size }) 
   const history = useHistory();
   const match = useRouteMatch();
   return (
-    <div
-      className={`${size} menu-item`}
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
-    >
-      <div
-        className='background-image'
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <div className='content'>
-        <h1 className='title'>{title.toUpperCase()}</h1>
-        <span className='subtitle'>SHOP NOW</span>
-      </div>
-    </div>
+    <MenuItemContainer size={size ? size : '380px'} onClick={() => history.push(`${match.url}${linkUrl}`)}>
+      <BackgroundImageContainer imageUrl={imageUrl} />
+      <ContentContainer>
+        <ContentTitle>{title.toUpperCase()}</ContentTitle>
+        <ContentSubtitle>SHOP NOW</ContentSubtitle>
+      </ContentContainer>
+    </MenuItemContainer>
   );
 };

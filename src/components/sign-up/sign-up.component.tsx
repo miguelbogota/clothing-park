@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import './sign-up.styles.scss';
+import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 
 import { SignUpFormProps } from 'core/models/props/sign-up.model';
 import { FormInput } from 'components/form-input/form-input.component';
@@ -28,8 +28,8 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <div className='sign-up'>
-      <h2 className='title'>I do not have an account</h2>
+    <SignUpContainer>
+      <SignUpTitle>I do not have an account</SignUpTitle>
       <span>Sign Up with your email and password</span>
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <FormInput
@@ -70,6 +70,6 @@ export const SignUp: FC = () => {
         />
         <UIButton type='submit'>Sign Up</UIButton>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
