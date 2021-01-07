@@ -1,5 +1,5 @@
-import { UIButtonProps } from 'core/models/props/ui-button.model';
 import styled, { css } from 'styled-components';
+import { UIButtonProps } from 'core/models/props/ui-button.model';
 
 const buttonStyles = css`
   background-color: #333333;
