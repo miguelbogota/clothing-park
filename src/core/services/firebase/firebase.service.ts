@@ -14,10 +14,10 @@ export const firestore = firebase.firestore();
 /** Authentication from firebase. */
 export const auth = firebase.auth();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ promp: 'select_account' });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ promp: 'select_account' });
 /** Sign in with pop up from Google. */
-export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> => auth.signInWithPopup(provider);
+export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> => auth.signInWithPopup(googleProvider);
 
 /**
  * Function adds the signed in user into the firestore db.

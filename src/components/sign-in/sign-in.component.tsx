@@ -3,10 +3,12 @@ import { ButtonsBarContainer, SignInContainer, SignInTitle } from './sign-in.sty
 import { SignInFormProps } from 'core/models/props/sign-in.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
-import { auth, signInWithGoogle } from 'core/services/firebase/firebase.service';
+import { auth } from 'core/services/firebase/firebase.service';
+import { useDispatch } from 'react-redux';
+import { googleSignInStart } from 'core/state/user/user.actions';
 
 export const SignIn: FC = () => {
-
+  const dispatch = useDispatch();
   const [signInForm, setSignInForm] = useState<SignInFormProps>({ email: '', password: '' });
 
   const handleSubmit = async (e: FormEvent) => {
@@ -31,26 +33,28 @@ export const SignIn: FC = () => {
 
       <form onSubmit={handleSubmit}>
         <FormInput
-          label='Email'
-          name='email'
-          id='sign-in-email'
-          type='email'
+          label="Email"
+          name="email"
+          id="sign-in-email"
+          type="email"
           value={signInForm.email}
           onChange={handleChange}
           required
         />
         <FormInput
-          label='Password'
-          name='password'
-          id='sign-in-password'
-          type='password'
+          label="Password"
+          name="password"
+          id="sign-in-password"
+          type="password"
           value={signInForm.password}
           onChange={handleChange}
           required
         />
         <ButtonsBarContainer>
-          <UIButton type='submit'>Sign In</UIButton>
-          <UIButton isGoogleSignIn onClick={signInWithGoogle}>Sign In With Google</UIButton>
+          <UIButton type="submit">Sign In</UIButton>
+          <UIButton type="button" isGoogleSignIn onClick={() => dispatch(googleSignInStart())}>
+            Sign In With Google
+          </UIButton>
         </ButtonsBarContainer>
       </form>
     </SignInContainer>
