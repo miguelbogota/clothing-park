@@ -44,7 +44,7 @@ export const createUserProfileDocument = async (
  * Function takes a snapshot and conver it to a map useful in the app.
  * @param collections Snapshot of the collection to convert to app model.
  */
-export const convertCollectionSnapshotToMap = (collections: QuerySnapshotDoc) => {
+export const convertCollectionsSnapshotToMap = (collections: QuerySnapshotDoc) => {
   const transformCollection = collections.docs.map(doc => {
     const { title, items } = doc.data() as ShopCollection;
     const id = doc.id;

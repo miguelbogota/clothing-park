@@ -17,3 +17,7 @@ export const selectShopCollectionsArray = createSelector(
     return collectionsKeys.map(keyName => collections[keyName as CollectionKeyType]);
   },
 );
+
+export const selectIsCollectionFetching = createSelector([selectShop], shop => shop.isFetching);
+
+export const selectIsCollectionsLoaded = createSelector([selectShop], shop => !!shop.collections);
