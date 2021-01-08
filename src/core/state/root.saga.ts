@@ -1,6 +1,8 @@
-import { reduxSaga } from './root.store';
+import { all, call } from 'redux-saga/effects';
 import { fetchCollectionsStart } from './shop/shop.sagas';
 
-export const runSagas = () => {
-  reduxSaga.run(fetchCollectionsStart);
-};
+export function* rootSaga() {
+  yield all([
+    call(fetchCollectionsStart),
+  ]);
+}
