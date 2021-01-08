@@ -31,3 +31,17 @@ export const signOutSuccess = (): UserActions => {
 export const signOutFailure = (error: Error): UserActions => {
   return { type: 'SIGN_OUT_FAILURE', payload: error };
 };
+
+export const signUpStart = (
+  credentional: { email: string; password: string; displayName: string },
+): UserActions => {
+  return { type: 'SIGN_UP_START', payload: credentional };
+};
+
+export const signUpSuccess = (payload: { user: firebase.User | null; displayName: string }): UserActions => {
+  return { type: 'SIGN_UP_SUCCESS', payload };
+};
+
+export const signUpFailure = (error: Error): UserActions => {
+  return { type: 'SIGN_UP_FAILURE', payload: error };
+};

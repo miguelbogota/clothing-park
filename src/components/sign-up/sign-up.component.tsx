@@ -4,22 +4,19 @@ import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 import { SignUpFormProps } from 'core/models/props/sign-up.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
-import { auth, createUserProfileDocument } from 'core/services/firebase/firebase.service';
+import { useDispatch } from 'react-redux';
+import { signUpStart } from 'core/state/user/user.actions';
 
 export const SignUp: FC = () => {
+  const dispatch = useDispatch();
   const INITIAL_VALUES = { displayName: '', email: '', password: '', confirmPassword: '' };
   const [signUpForm, setSignUpForm] = useState<SignUpFormProps>(INITIAL_VALUES);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { displayName, email, password, confirmPassword } = signUpForm;
+    const { password, confirmPassword } = signUpForm;
     if (password !== confirmPassword) { alert('Password do not match, please check them!'); return; }
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName });
-      setSignUpForm({ displayName: '', email: '', password: '', confirmPassword: '' });
-    }
-    catch (err) { console.error('Error creating user in Firestore.', err); }
+    dispatch(signUpStart(signUpForm));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
