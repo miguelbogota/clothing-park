@@ -14,6 +14,8 @@ export const userReducer = (state = INITIAL_VALUES, action: UserActions): UserSt
       currentUser: action.payload as ShopUserNull,
       error: null,
     };
+    case 'SIGN_OUT_SUCCESS': return { ...state, currentUser: null, error: null };
+    case 'SIGN_OUT_FAILURE':
     case 'SIGN_IN_FAILURE': return { ...state, error: action.payload as Error };
     default: return state;
   }

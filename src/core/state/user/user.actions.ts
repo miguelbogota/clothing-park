@@ -19,3 +19,15 @@ export const signInFailure = (error: Error): UserActions => {
 export const checkUserSession = (): UserActions => {
   return { type: 'CHECK_USER_SESSION' };
 };
+
+export const signOutStart = (): UserActions => {
+  return { type: 'SIGN_OUT_START' };
+};
+
+export const signOutSuccess = (): UserActions => {
+  return { type: 'SIGN_OUT_SUCCESS' };
+};
+
+export const signOutFailure = (error: Error): UserActions => {
+  return { type: 'SIGN_OUT_FAILURE', payload: error };
+};

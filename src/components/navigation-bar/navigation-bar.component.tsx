@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
 import { NavigationBarContainer, LogoContainer, Options, OptionLink } from './navigation-bar.styles';
-import { auth } from 'core/services/firebase/firebase.service';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import { CartIcon } from 'components/cart-icon/cart-icon.component';
 import { CartDropdown } from 'components/cart-dropdown/cart-dropdown.component';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from 'core/state/user/user.selectors';
 import { selectCartHidden } from 'core/state/cart/cart.selectors';
+import { signOutStart } from 'core/state/user/user.actions';
 
 export const NavigationBar: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   const hidden = useSelector(selectCartHidden);
+  const dispatch = useDispatch();
   return (
     <NavigationBarContainer>
       <LogoContainer to='/'>
@@ -25,7 +26,7 @@ export const NavigationBar: FC = () => {
         </OptionLink>
         {
           currentUser
-            ? <OptionLink as="div" onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
+            ? <OptionLink as="div" onClick={() => dispatch(signOutStart())}>SIGN OUT</OptionLink>
             : <OptionLink to='/signin'>SIGN IN</OptionLink>
         }
         <CartIcon />
