@@ -5,15 +5,14 @@ import { ReduxDispatch } from './root.models';
 export type UserStateActions =
   'SET_CURRENT_USER' |
   'GOOGLE_SIGN_IN_START' |
-  'GOOGLE_SIGN_IN_SUCCESS' |
-  'GOOGLE_SIGN_IN_FAILURE' |
   'EMAIL_SIGN_IN_START' |
-  'EMAIL_SIGN_IN_SUCCESS' |
-  'EMAIL_SIGN_IN_FAILURE'
+  'SIGN_IN_SUCCESS' |
+  'SIGN_IN_FAILURE' |
+  'CHECK_USER_SESSION'
 ;
 
 /** Dispatch interface for the user.  */
-export type UserActions = ReduxDispatch<UserStateActions>
+export type UserActions<T = unknown> = ReduxDispatch<UserStateActions, T>
 
 /** Model for the state the user will have */
 export interface UserState {

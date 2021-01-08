@@ -6,7 +6,11 @@ export const FormInput: FC<FormInputProps> = ({ label, id, ...InputProps }) => {
   return (
     <GroupContainer>
       <FormInputContainer id={id} {...InputProps} />
-      {label ? (<FormInputLabel htmlFor={id}>{label}</FormInputLabel>) : null}
+      {
+        label
+          ? (<FormInputLabel className={InputProps.value.length ? 'shrink' : ''} htmlFor={id}>{label}</FormInputLabel>)
+          : null
+      }
     </GroupContainer>
   );
 };

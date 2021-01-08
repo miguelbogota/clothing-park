@@ -20,6 +20,18 @@ googleProvider.setCustomParameters({ promp: 'select_account' });
 export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> => auth.signInWithPopup(googleProvider);
 
 /**
+ * Function returns the status of the user as a promise.
+ */
+export const getCurrentUser = (): Promise<firebase.User | null> => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      unsubscribe();
+      resolve(user);
+    }, reject);
+  });
+};
+
+/**
  * Function adds the signed in user into the firestore db.
  * @param userAuth User to add to the db.
  * @param additionalData Additional data to merge with the user.

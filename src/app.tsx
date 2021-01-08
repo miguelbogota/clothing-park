@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { NavigationBar } from 'components/navigation-bar/navigation-bar.component';
 import { HomePage } from 'views/home/home.component';
@@ -9,9 +9,15 @@ import { ShopPage } from 'views/shop/shop.component';
 import { AuthenticationPage } from 'views/authentication/authentication.component';
 import { NotFoundPage } from 'views/not-found/not-found.component';
 import { selectCurrentUser } from 'core/state/user/user.selectors';
+import { checkUserSession } from 'core/state/user/user.actions';
 
 export const App: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

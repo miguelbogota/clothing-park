@@ -3,9 +3,8 @@ import { ButtonsBarContainer, SignInContainer, SignInTitle } from './sign-in.sty
 import { SignInFormProps } from 'core/models/props/sign-in.model';
 import { FormInput } from 'components/form-input/form-input.component';
 import { UIButton } from 'components/ui-button/ui-button.component';
-import { auth } from 'core/services/firebase/firebase.service';
 import { useDispatch } from 'react-redux';
-import { googleSignInStart } from 'core/state/user/user.actions';
+import { emailSignInStart, googleSignInStart } from 'core/state/user/user.actions';
 
 export const SignIn: FC = () => {
   const dispatch = useDispatch();
@@ -13,12 +12,7 @@ export const SignIn: FC = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { email, password } = signInForm;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setSignInForm({ email: '', password: '' });
-    }
-    catch (err) { console.error('Error signing in.', err); }
+    dispatch(emailSignInStart(signInForm));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
