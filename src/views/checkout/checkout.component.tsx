@@ -7,13 +7,24 @@ import {
   WarningContainer,
 } from './checkout.styles';
 import { selectCartItems, selectCartTotal } from 'core/state/cart/cart.selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CheckoutItem } from 'components/checkout-item/checkout-item.component';
-import { StripeCheckoutButton } from 'components/stripe-button/stripe-button.component';
+import { UIButton } from 'components/ui-button/ui-button.component';
+import { useHistory } from 'react-router-dom';
+import { clearCart } from 'core/state/cart/cart.actions';
 
 export const CheckoutPage: FC = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+  const history = useHistory();
+
+  const handlePay = () => {
+    alert('Your paid your stuff, now you can leave! :v');
+    dispatch(clearCart());
+    history.push('/shop');
+  };
+
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
@@ -38,11 +49,11 @@ export const CheckoutPage: FC = () => {
         <span>TOTAL: ${cartTotal}</span>
       </TotalContainer>
       <WarningContainer>
-        *Please use the following test credit card for payments*
+        *Payments are currently not supported*
         <br />
-        4242 4242 4242 4242 - Exp: Any date in the future - CVV: 123
+        😊
       </WarningContainer>
-      <StripeCheckoutButton price={cartTotal} />
+      <UIButton onClick={handlePay}>Pay Now</UIButton>
     </CheckoutPageContainer>
   );
 };
