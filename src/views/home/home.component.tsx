@@ -9,3 +9,5 @@ export const HomePage: FC = () => {
     </HomePageContainer>
   );
 };
+
+export default HomePage;

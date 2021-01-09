@@ -11,3 +11,5 @@ export const AuthenticationPage: FC = () => {
     </AuthenticationContainer>
   );
 };
+
+export default AuthenticationPage;

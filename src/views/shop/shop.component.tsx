@@ -30,3 +30,5 @@ export const ShopPage: FC = () => {
     </ShopContainer>
   );
 };
+
+export default ShopPage;

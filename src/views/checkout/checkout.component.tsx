@@ -47,3 +47,5 @@ export const CheckoutPage: FC = () => {
     </CheckoutPageContainer>
   );
 };
+
+export default CheckoutPage;

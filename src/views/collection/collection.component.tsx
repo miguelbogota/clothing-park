@@ -17,3 +17,5 @@ export const CollectionPage: FC = () => {
     </CollectionPageContainer>
   );
 };
+
+export default CollectionPage;

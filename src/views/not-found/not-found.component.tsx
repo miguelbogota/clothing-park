@@ -6,3 +6,5 @@ export const NotFoundPage: FC = () => {
     <NotFoundContainer>Page Not Found</NotFoundContainer>
   );
 };
+
+export default NotFoundPage;

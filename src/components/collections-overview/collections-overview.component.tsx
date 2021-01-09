@@ -14,3 +14,5 @@ export const CollectionsOverview: FC = () => {
     </CollectionsOverviewContainer>
   );
 };
+
+export default CollectionsOverview;
