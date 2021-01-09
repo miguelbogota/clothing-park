@@ -28,21 +28,11 @@ export const CheckoutPage: FC = () => {
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
-        <HeaderBlockContainer>
-          <span>Product</span>
-        </HeaderBlockContainer>
-        <HeaderBlockContainer>
-          <span>Description</span>
-        </HeaderBlockContainer>
-        <HeaderBlockContainer>
-          <span>Quantity</span>
-        </HeaderBlockContainer>
-        <HeaderBlockContainer>
-          <span>Price</span>
-        </HeaderBlockContainer>
-        <HeaderBlockContainer>
-          <span>Remove</span>
-        </HeaderBlockContainer>
+        <HeaderBlockContainer>Product</HeaderBlockContainer>
+        <HeaderBlockContainer>Description</HeaderBlockContainer>
+        <HeaderBlockContainer>Quantity</HeaderBlockContainer>
+        <HeaderBlockContainer>Price</HeaderBlockContainer>
+        <HeaderBlockContainer>Remove</HeaderBlockContainer>
       </CheckoutHeaderContainer>
       {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} item={cartItem} />)}
       <TotalContainer>

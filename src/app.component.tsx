@@ -10,6 +10,7 @@ import { AuthenticationPage } from 'views/authentication/authentication.componen
 import { NotFoundPage } from 'views/not-found/not-found.component';
 import { selectCurrentUser } from 'core/state/user/user.selectors';
 import { checkUserSession } from 'core/state/user/user.actions';
+import { GlobalStyle } from './app.styles';
 
 export const App: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -21,6 +22,7 @@ export const App: FC = () => {
 
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <NavigationBar />
       <Switch>
         <Route path="/" component={HomePage} exact />
