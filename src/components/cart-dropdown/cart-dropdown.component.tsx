@@ -5,7 +5,7 @@ import {
   EmptyMessageContainer,
   CartDropdownButton,
 } from './cart-dropdown.styles';
-import { CartItem } from 'components/cart-item/cart-item.component';
+import { CartItemMemo } from 'components/cart-item/cart-item.component';
 import { useDispatch, useSelector } from 'react-redux';
 import { ShopItem } from 'core/models/item.model';
 import { selectCartItems } from 'core/state/cart/cart.selectors';
@@ -28,7 +28,7 @@ export const CartDropdown: FC = () => {
       <CartItemsContainer>
         {
           cartItems.length
-            ? cartItems.map((cartItem: ShopItem) => <CartItem key={cartItem.id} item={cartItem} />)
+            ? cartItems.map((cartItem: ShopItem) => <CartItemMemo key={cartItem.id} item={cartItem} />)
             : (<EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>)
         }
       </CartItemsContainer>

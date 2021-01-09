@@ -1,8 +1,8 @@
+import React, { FC, memo } from 'react';
 import { ShopItem } from 'core/models/item.model';
-import React, { FC } from 'react';
 import { CartItemContainer, CartItemImage, ItemDetailsContainer } from './cart-item.styles';
 
-export const CartItem: FC<{ item: ShopItem; }> = ({ item: { name, imageUrl, price, quantity } }) => {
+const CartItem: FC<{ item: ShopItem; }> = ({ item: { name, imageUrl, price, quantity } }) => {
   return (
     <CartItemContainer>
       <CartItemImage src={imageUrl} />
@@ -13,3 +13,5 @@ export const CartItem: FC<{ item: ShopItem; }> = ({ item: { name, imageUrl, pric
     </CartItemContainer>
   );
 };
+
+export const CartItemMemo = memo(CartItem);
